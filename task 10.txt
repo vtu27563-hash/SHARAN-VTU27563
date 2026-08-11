@@ -1,26 +1,37 @@
-import java.util.Scanner;
+class GFG {
+  
+    static int binarySearch(int arr[], int x) {
+        int low = 0, high = arr.length - 1;
+        while (low <= high) {
+            int mid = low + (high - low) / 2;
 
-public class SumOfLastDigits {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
+            // Check if x is present at mid
+            if (arr[mid] == x)
+                return mid;
 
-        // Input two numbers
-        System.out.print("Enter first number: ");
-        int num1 = sc.nextInt();
+            // If x greater, ignore left half
+            if (arr[mid] < x)
+                low = mid + 1;
 
-        System.out.print("Enter second number: ");
-        int num2 = sc.nextInt();
+            // If x is smaller, ignore right half
+            else
+                high = mid - 1;
+        }
 
-        // Find last digits
-        int lastDigit1 = Math.abs(num1 % 10);
-        int lastDigit2 = Math.abs(num2 % 10);
+        // If we reach here, then element was
+        // not present
+        return -1;
+    }
 
-        // Calculate sum
-        int sum = lastDigit1 + lastDigit2;
-
-        // Display result
-        System.out.println("Sum of last digits = " + sum);
-
-        sc.close();
+    public static void main(String args[]) {
+        int arr[] = { 2, 3, 4, 10, 40 };
+        int x = 10;
+        int result = binarySearch(arr, x);
+        if (result == -1)
+            System.out.println(
+                "Element is not present in array");
+        else
+            System.out.println("Element is present at "
+                               + "index " + result);
     }
 }

@@ -1,12 +1,23 @@
-public class Fruits {
+import java.util.Arrays;
+
+public class KthSmallestSorting {
+    public static int findKthSmallest(int[] arr, int k) {
+        // Edge case handling
+        if (arr == null || k > arr.length || k <= 0) {
+            throw new IllegalArgumentException("Invalid value of k or empty array");
+        }
+
+        // Sort the array in ascending order
+        Arrays.sort(arr);
+
+        // Return the element at k-1 index
+        return arr[k - 1];
+    }
+
     public static void main(String[] args) {
-        // 1. Declare and initialize an array
-        String[] fruits = {"Apple", "Banana", "Cherry", "Mango"};
-
-        // 2. Define the index you want to access
-        int index = 2; 
-
-        // 3. Access and print the element
-        System.out.println("Element at index " + index + " is: " + fruits[index]);
+        int[] arr = {12, 3, 5, 7, 19, 1};
+        int k = 3;
+        
+        System.out.println("The " + k + "rd smallest element is: " + findKthSmallest(arr, k));
     }
 }
